@@ -2,10 +2,7 @@ package utilities;
 
 import org.openqa.selenium.*;
 
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
 import org.openqa.selenium.interactions.Actions;
 
 import java.time.Duration;
@@ -132,5 +129,24 @@ public class SeleniumHelpers {
     public String getText(WebElement e)
     {
         return waitTillElementIsVisible(e).getText().trim();
+    }
+
+    /**
+     * Wait for the burger menu button to be visible and load JavaScript
+     * @param e
+     * @throws InterruptedException
+     */
+    public void displayBurgerMenuBtn(WebElement e) throws InterruptedException{
+        waitTillElementIsVisible(e);
+        waitForJavascriptToLoad();
+    }
+
+    /**
+     * @param dropdownElement
+     * @param visibleText
+     */
+    public void selectDropdownOption(WebElement dropdownElement, String visibleText){
+        Select select = new Select(dropdownElement);
+        select.selectByVisibleText(visibleText);
     }
 }
